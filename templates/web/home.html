@@ -1,0 +1,55 @@
+{% extends 'web/master.html' %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="container card-body">
+    <div class="row">
+        <div class="col-md-6 order-md-2">
+            <div>
+                <canvas id="myChart"></canvas>
+              </div>              
+        </div>
+        <div class="col-md-6 contents">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="mb-4">
+                        <h3>
+                            <a href="{% url 'logout' %}"><span class="icon-chevron-left mr-3"></span></a>
+                            Welcome!
+                        </h3>
+                        <p class="mb-4">Your information</p>
+                        <div class="card">
+                            <img class="card-img-top" src="{{request.user.information.avatar}}" alt="{{request.user}}">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">{{request.user.first_name}} {{request.user.last_name}}
+                                    <a href="{% url 'profiles:profile' %}"><span class="icon-pencil mr-3"></span></a>
+                                </h4>
+                                <p class="card-text text-center">{{request.user.information.position}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    var all_skills = {{all_skills|safe}}
+    var user_skills = {{user_skills|safe}}
+</script>
+
+<script src="{% static 'js/mychart.js' %}"></script>
+
+{% endblock %}

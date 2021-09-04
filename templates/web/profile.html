@@ -1,0 +1,52 @@
+{% extends 'web/master.html' %}
+{% load static %}
+
+{% block title %}
+Update Profile
+{% endblock %}
+
+{% block content %}
+<div class="container card-body">
+    <div class="row">
+        <div class="col-md-6 order-md-2">
+            <img src="{% static 'images/update.svg' %}" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 contents">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="mb-4">
+                        <h3>
+                            <a href="{% url 'profiles:home' %}"><span class="icon-chevron-left mr-3"></span></a>
+                            Update Profile
+                        </h3>
+                        <p class="mb-4">Fill the form</p>
+                    </div>
+                    {% if form.errors %}
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {% for field in form %}
+                            {% for error in field.errors%}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}                        
+                            {{ error|escape }}
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group first not-empty field--not-empty">
+                            <label for="first_name">{{field.label}}</label>
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+                        <input type="submit" value="Update" class="btn text-white btn-block btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

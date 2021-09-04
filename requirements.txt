@@ -1,0 +1,16 @@
+asgiref==3.4.1
+cairocffi==1.2.0
+CairoSVG==2.5.2
+cffi==1.14.6
+cssselect2==0.4.1
+defusedxml==0.7.1
+Django==3.2.7
+Jinja2==3.0.1
+MarkupSafe==2.0.1
+Pillow==8.3.2
+pycparser==2.20
+pytz==2021.1
+sqlparse==0.4.1
+tinycss2==1.1.0
+typing-extensions==3.10.0.2
+webencodings==0.5.1
